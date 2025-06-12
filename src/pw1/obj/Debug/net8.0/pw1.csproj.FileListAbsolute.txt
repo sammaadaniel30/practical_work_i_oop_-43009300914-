@@ -1,0 +1,15 @@
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\bin\Debug\net8.0\pw1.exe
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\bin\Debug\net8.0\pw1.deps.json
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\bin\Debug\net8.0\pw1.runtimeconfig.json
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\bin\Debug\net8.0\pw1.dll
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\bin\Debug\net8.0\pw1.pdb
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.AssemblyInfoInputs.cache
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.AssemblyInfo.cs
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.csproj.CoreCompileInputs.cache
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.sourcelink.json
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.dll
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\refint\pw1.dll
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.pdb
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\pw1.genruntimeconfig.cache
+C:\Users\danie\Downloads\REPO\practical_work_i_oop_-43009300914-\src\pw1\obj\Debug\net8.0\ref\pw1.dll
