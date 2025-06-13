@@ -26,13 +26,49 @@ namespace OOP
             Console.WriteLine("|+++++++++++ Train UFV +++++++++++|");
             Console.WriteLine("|---------------------------------|");
             Console.WriteLine("| Choose an option                |");
-            Console.WriteLine("| 1. Load trains from file        |"); 
+            Console.WriteLine("| 1. Load trains from file        |");
             Console.WriteLine("| 2. Load train manually          |");
             Console.WriteLine("| 3. Start simulation             |");
             Console.WriteLine("| 4. Exit                         |");
             Console.WriteLine("|---------------------------------|");
             Console.WriteLine("|+++++++++++++++++++++++++++++++++|");
             Console.WriteLine("|---------------------------------|");
+
+            SelectOption(); 
+
+        }
+
+        public void SelectOption()
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine("Please select your option ");
+
+            int selection = int.Parse(Console.ReadLine());
+
+            if (selection == 1)
+            {
+                // Loads the file
+                Console.WriteLine("You have selected to load the trains from files option");
+            }
+            else if (selection == 2)
+            {
+                Console.WriteLine("You have selected to load the trains manually");
+            }
+            else if (selection == 3)
+            {
+                Console.WriteLine("You have selected to load the trains from a file");
+
+            }
+            else if (selection == 4)
+            {
+                Console.WriteLine("The program will exit");
+            }
+            else 
+            {
+                Console.WriteLine("Invalid option. Please try again");
+                PrintMenu(); 
+            }
+
 
         }
     }
