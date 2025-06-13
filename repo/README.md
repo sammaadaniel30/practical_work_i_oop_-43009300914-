@@ -10,3 +10,9 @@ Forked the repo from the base repo.
 Made the correspoding folder as stated. 
 
 Added the correct files in their correspoding folder. 
+
+## 13/06/2025 
+
+Created the files neccessary for each class. 
+
+Added constructors and also their properties neccessary.
