@@ -7,8 +7,8 @@ namespace OOP
         public List<Platform> platforms { get; set; }
         public List<Train> trains { get; set; }
 
-        public double ticksPerHour = 0.25;  
-        
+        public int minutesPerTick = 15; // Each tick represents 15 minutes
+
         public Station(int numberOfPlatforms)
         {
             platforms = new List<Platform>();
@@ -19,5 +19,22 @@ namespace OOP
                 platforms.Add(new Platform($"Platform-{i}"));
             }
         }
+
+        public void PrintMenu()
+        {
+            Console.WriteLine("___________________________________");
+            Console.WriteLine("|+++++++++++ Train UFV +++++++++++|");
+            Console.WriteLine("|---------------------------------|");
+            Console.WriteLine("| Choose an option                |");
+            Console.WriteLine("| 1. Load trains from file        |"); 
+            Console.WriteLine("| 2. Load train manually          |");
+            Console.WriteLine("| 3. Start simulation             |");
+            Console.WriteLine("| 4. Exit                         |");
+            Console.WriteLine("|---------------------------------|");
+            Console.WriteLine("|+++++++++++++++++++++++++++++++++|");
+            Console.WriteLine("|---------------------------------|");
+
+        }
     }
+
 }
