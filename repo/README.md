@@ -18,3 +18,5 @@ Created the files neccessary for each class.
 Added constructors and also their properties neccessary.
 
 Added the syntax in the Program and Station class to print the menu. 
+
+Added the selection menu to the Station class. 
