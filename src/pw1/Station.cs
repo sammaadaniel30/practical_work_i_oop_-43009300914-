@@ -34,7 +34,7 @@ namespace OOP
             Console.WriteLine("|+++++++++++++++++++++++++++++++++|");
             Console.WriteLine("|---------------------------------|");
 
-            SelectOption(); 
+            SelectOption();
 
         }
 
@@ -63,11 +63,56 @@ namespace OOP
             {
                 Console.WriteLine("The program will exit");
             }
-            else 
+            else
             {
                 Console.WriteLine("Invalid option. Please try again");
-                PrintMenu(); 
+                PrintMenu();
             }
+
+
+        }
+
+        public void LoadFromFile()
+        {
+            // The user must enter the file path
+            Console.WriteLine("Please enter the path of the file you wish to load: ");
+
+            string path = Console.ReadLine();
+
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string line;
+
+                string separator = ",";
+
+                // Reads the file per file until it is blank
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] fields = line.Split(separator);
+
+                    // We assign the data 
+                    string id = fields[0];
+                    int arrivalTime = int.Parse(fields[1]);
+                    string type = fields[2];
+
+                    if (type == "Passenger")
+                    {
+                        int numberOfCarriages = int.Parse(fields[3]);
+                        int capacity = int.Parse(fields[4]);
+                        trains.Add(new PassengerTrain(id, arrivalTime, type, numberOfCarriages, capacity));
+
+
+                    }
+                    else if (type == "Freight")
+                    {
+                        int maxWeight = int.Parse(fields[3]);
+                        string freightType = fields[4];
+                        trains.Add(new FreightTrain(id, arrivalTime, type, maxWeight, freightType));
+                    }
+                
+                }
+            } 
+
 
 
         }
