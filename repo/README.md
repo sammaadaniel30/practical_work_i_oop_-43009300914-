@@ -32,3 +32,5 @@ Added in the constructor a ConsoleWriteLine to show the creation of each Platfor
 Corrected errors in the file loading. 
 
 Added the virtual methods for printing the details of the platfroms and trains. 
+
+Added partially the DisplayStatus method to show through the console the trains loaded from the file. 
