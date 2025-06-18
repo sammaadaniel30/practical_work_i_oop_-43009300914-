@@ -1,4 +1,5 @@
 using System;
+using System.Runtime;
 
 namespace OOP
 {
@@ -17,7 +18,7 @@ namespace OOP
             for (int i = 1; i <= numberOfPlatforms; i++)
             {
                 // Creates and adds each unique platform individually to the list platforms 
-                Platform uniquePlatform = new Platform($"Platform-{i}"); 
+                Platform uniquePlatform = new Platform($"Platform-{i}");
                 platforms.Add(uniquePlatform);
 
                 // Shows by console that the platforms are created
@@ -54,7 +55,7 @@ namespace OOP
             {
                 // Attemps to load the trains from a specific file 
                 Console.WriteLine("You have selected to load the trains from files option");
-                LoadTrainsFromFile(); 
+                LoadTrainsFromFile();
             }
             else if (selection == 2)
             {
@@ -130,10 +131,29 @@ namespace OOP
                     PrintMenu(); // Returns the user to the menu
                 }
 
+
+                DisplayStatus(); 
+
             }
 
 
 
+        }
+
+        public void DisplayStatus()
+        {
+            Console.WriteLine("\n=============== PLATFORMS STATUS ================");
+            foreach (var platform in platforms)
+            {
+                Console.WriteLine("Here the platforms' status will be printed");
+            }
+
+            Console.WriteLine("\n=============== TRAINS STATUS ===================");
+            foreach (var train in trains)
+            {
+                train.ShowTrainInfo();
+            }
+            Console.WriteLine("=================================================\n");
         }
     }
 
