@@ -33,4 +33,6 @@ Corrected errors in the file loading.
 
 Added the virtual methods for printing the details of the platfroms and trains. 
 
-Added partially the DisplayStatus method to show through the console the trains loaded from the file. 
+Added partially the DisplayStatus method to show through the console the trains loaded from the file. ÇÇ
+
+Added a method to make sure no duplicate ID's are loaded from the file. 
