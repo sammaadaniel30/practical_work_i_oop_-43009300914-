@@ -16,7 +16,12 @@ namespace OOP
 
             for (int i = 1; i <= numberOfPlatforms; i++)
             {
-                platforms.Add(new Platform($"Platform-{i}"));
+                // Creates and adds each unique platform individually to the list platforms 
+                Platform uniquePlatform = new Platform($"Platform-{i}"); 
+                platforms.Add(uniquePlatform);
+
+                // Shows by console that the platforms are created
+                Console.WriteLine($"Created Platform: {uniquePlatform.id}");
             }
         }
 
