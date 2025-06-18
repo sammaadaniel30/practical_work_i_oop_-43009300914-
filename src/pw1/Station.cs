@@ -45,39 +45,41 @@ namespace OOP
 
         public void SelectOption()
         {
-            Console.WriteLine(" ");
+            Console.WriteLine(" "); // Blank space for clarity
             Console.WriteLine("Please select your option ");
 
             int selection = int.Parse(Console.ReadLine());
 
             if (selection == 1)
             {
-                // Loads the file
+                // Attemps to load the trains from a specific file 
                 Console.WriteLine("You have selected to load the trains from files option");
+                LoadTrainsFromFile(); 
             }
             else if (selection == 2)
             {
-                Console.WriteLine("You have selected to load the trains manually");
+                Console.WriteLine("You have selected to load the trains manually.");
             }
             else if (selection == 3)
             {
-                Console.WriteLine("You have selected to load the trains from a file");
+                Console.WriteLine("You have selected to start the simulation.");
+
 
             }
             else if (selection == 4)
             {
-                Console.WriteLine("The program will exit");
+                Console.WriteLine("The program will exit.");
             }
             else
             {
-                Console.WriteLine("Invalid option. Please try again");
+                Console.WriteLine("Invalid option. Please try again.");
                 PrintMenu();
             }
 
 
         }
 
-        public void LoadFromFile()
+        public void LoadTrainsFromFile()
         {
             // The user must enter the file path
             Console.WriteLine("Please enter the path of the file you wish to load: ");
@@ -90,20 +92,23 @@ namespace OOP
 
                 string separator = ",";
 
+                sr.ReadLine(); // Skips the header
+
                 // Reads the file per file until it is blank
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] fields = line.Split(separator);
 
+
                     // We assign the data 
                     string id = fields[0];
-                    int arrivalTime = int.Parse(fields[1]);
+                    int arrivalTime = Int32.Parse(fields[1]);
                     string type = fields[2];
 
                     if (type == "Passenger")
                     {
                         int numberOfCarriages = int.Parse(fields[3]);
-                        int capacity = int.Parse(fields[4]);
+                        int capacity = Int32.Parse(fields[4]);
                         trains.Add(new PassengerTrain(id, arrivalTime, type, numberOfCarriages, capacity));
 
 
@@ -114,9 +119,18 @@ namespace OOP
                         string freightType = fields[4];
                         trains.Add(new FreightTrain(id, arrivalTime, type, maxWeight, freightType));
                     }
-                
+
                 }
-            } 
+
+                // As per the statement, a file with a minimum of 15 trains should be loaded
+                if (trains.Count < 15)
+                {
+                    trains.Clear();
+                    Console.WriteLine("You must give a file with 15 trains minimum");
+                    PrintMenu(); // Returns the user to the menu
+                }
+
+            }
 
 
 
