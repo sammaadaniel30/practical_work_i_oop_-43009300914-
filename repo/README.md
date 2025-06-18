@@ -24,3 +24,7 @@ Added the selection menu to the Station class.
 ### 14/06/2025 ###
 
 Added the method to allow the trains to be loaded from a file. 
+
+### 18/06/2025 ###
+
+Added in the constructor a ConsoleWriteLine to show the creation of each Platform by the console to the user. 
