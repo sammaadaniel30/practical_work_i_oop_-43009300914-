@@ -1,7 +1,7 @@
 using System;
 
 namespace OOP
-{ 
+{
 
     public class FreightTrain : Train
     {
@@ -13,6 +13,12 @@ namespace OOP
         {
             this.maxWeight = maxWeight;
             this.freightType = freightType;
+        }
+
+        public override void ShowTrainInfo()
+        {
+            base.ShowTrainInfo();
+            Console.WriteLine($" | Max Weight: {maxWeight} | Freight Type: {freightType}");
         }
     }
 

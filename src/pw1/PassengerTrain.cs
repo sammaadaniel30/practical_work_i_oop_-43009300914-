@@ -1,7 +1,7 @@
 using System;
 
 namespace OOP
-{ 
+{
 
     public class PassengerTrain : Train
     {
@@ -13,6 +13,13 @@ namespace OOP
         {
             this.numberOfCarriages = numberOfCarriages;
             this.capacity = capacity;
+        }
+        
+
+        public override void ShowTrainInfo()
+        {
+            base.ShowTrainInfo();
+            Console.WriteLine($" | Number of Carriages: {numberOfCarriages} | Capacity: {capacity}");
         }
     }
 
