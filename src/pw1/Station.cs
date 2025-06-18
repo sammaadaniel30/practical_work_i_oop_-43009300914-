@@ -1,5 +1,6 @@
 using System;
 using System.Runtime;
+using System.Runtime.ExceptionServices;
 
 namespace OOP
 {
@@ -103,6 +104,11 @@ namespace OOP
 
                     // We assign the data 
                     string id = fields[0];
+
+                    // Checks no duplicate ID's for each train 
+                    CheckID(id); 
+
+
                     int arrivalTime = Int32.Parse(fields[1]);
                     string type = fields[2];
 
@@ -139,6 +145,20 @@ namespace OOP
 
 
         }
+
+        public void CheckID(string id)
+        {
+            foreach (var train in trains)
+            {
+                // If the ID is repeated a message is shown
+                if (id == train.id)
+                {
+                    Console.WriteLine($"Train {id} already exists");
+                    PrintMenu(); // User is returned to the menu. 
+                }
+            }
+            
+        } 
 
         public void DisplayStatus()
         {
