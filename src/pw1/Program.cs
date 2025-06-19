@@ -30,12 +30,12 @@ namespace OOP
             catch (ArgumentNullException ex0)
             {
                 Console.WriteLine($"An error has been detected: {ex0.Message}");
-                Console.WriteLine("Please try again by executing the program again and enter a valid number");
+                Console.WriteLine("Please try again by executing the program again and enter a valid number.");
             }
             catch (FormatException ex1)
             {
                 Console.WriteLine($"An error has been detected: {ex1.Message}");
-                Console.WriteLine("Please try again by executing the program again and enter a valid number");
+                Console.WriteLine("Please try again by executing the program again and enter a valid number.");
             }
         }
     }
