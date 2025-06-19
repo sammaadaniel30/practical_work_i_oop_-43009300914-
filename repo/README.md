@@ -62,3 +62,7 @@ Added setters and getters as well as changed the atributes of each class(not app
 Added exceptions to the Station and Platfrom class. 
 
 Fixed some typos in the Program Class. 
+
+Added comments on all classes. 
+
+Made a change in the LoadTrainFromFile method in the Station class, to automatically load the trains from a file regardless if it has a header or not, without losing data of trains. 
