@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
 using System.Runtime;
 using System.Runtime.ExceptionServices;
@@ -217,6 +218,7 @@ namespace OOP
 
             DisplayStatus(); // Shows the station info
 
+            CheckDockedTrains(); 
 
             // Asks the user if he wants another tick or go back to the menu
             Console.WriteLine("Press any key to do another tick simulation, or type Menu to return to the main menu");
@@ -249,6 +251,25 @@ namespace OOP
             {
                 Console.WriteLine($"No platforms are available. Train {train.id} is now waiting");
                 train.trainStatus = Train.TrainStatus.Waiting;
+            }
+        }
+
+        public void CheckDockedTrains()
+        {
+            int countDockedTrains = 0;
+            foreach (var train in trains)
+            {
+                if (train.trainStatus == Train.TrainStatus.Docked)
+                {
+                    countDockedTrains++;
+                }
+            }
+
+            if (countDockedTrains == trains.Count)
+            {
+                Console.WriteLine("All trains have been docked");
+                Console.WriteLine("The program will now finish");
+                Environment.Exit(0); 
             }
         }
 
