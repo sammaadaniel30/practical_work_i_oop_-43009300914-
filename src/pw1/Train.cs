@@ -6,7 +6,7 @@ namespace OOP
     public abstract class Train
     {
         public string id { get; set; }
-        public TrainStatus status { get; set; }
+        public TrainStatus trainStatus { get; set; }
         public int arrivalTime { get; set; }
         public string type { get; set; }
 
@@ -20,12 +20,12 @@ namespace OOP
             this.id = id;
             this.arrivalTime = arrivalTime;
             this.type = type;
-            status = TrainStatus.EnRoute; // By default trains loaded will be EnRoute
+            trainStatus = TrainStatus.EnRoute; // By default trains loaded will be EnRoute
         }
 
         public virtual void ShowTrainInfo()
         {
-            Console.Write($"ID: {id} | Arrival Time: {arrivalTime} | Type: {type} km | Status: {status}");
+            Console.Write($"ID: {id} | Arrival Time: {arrivalTime} | Type: {type} km | Status: {trainStatus}");
         }
     }
 
