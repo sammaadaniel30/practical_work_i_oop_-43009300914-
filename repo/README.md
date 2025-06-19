@@ -47,3 +47,12 @@ Added management for docking and futher related tasks to do with platforms in th
 
 Fully implemented the AdvanceTick method. 
 
+Added clarity for the code reading in the console in the Program class. 
+
+Added a new method to manage the request of platforms, for arriving train and setting them to waiting or allowing them to process the request. 
+
+Removed uneccessary code in the Platform class. 
+
+Added a method to check when all the trains are docked and end the program. 
+
+Fixed minimal erros in the program class. 
