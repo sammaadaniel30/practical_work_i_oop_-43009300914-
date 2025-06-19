@@ -43,3 +43,7 @@ Implemented the GetStatus method in the platform, in order to fully print the st
 
 Changed a variable name for more clarity. 
 
+Added management for docking and futher related tasks to do with platforms in the platform class.
+
+Fully implemented the AdvanceTick method. 
+
