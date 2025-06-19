@@ -36,3 +36,7 @@ Added the virtual methods for printing the details of the platfroms and trains.
 Added partially the DisplayStatus method to show through the console the trains loaded from the file. ÇÇ
 
 Added a method to make sure no duplicate ID's are loaded from the file. 
+
+### 19/06/2025 ###
+
+Implemented the GetStatus method in the platform, in order to fully print the status of the platform in the DisplayStatus method. 
