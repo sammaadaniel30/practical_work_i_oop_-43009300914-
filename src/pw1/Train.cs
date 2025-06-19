@@ -5,10 +5,10 @@ namespace OOP
 
     public abstract class Train
     {
-        public string id { get; set; }
-        public TrainStatus trainStatus { get; set; }
-        public int arrivalTime { get; set; }
-        public string type { get; set; }
+        protected string id; 
+        protected TrainStatus trainStatus; 
+        protected int arrivalTime; 
+        protected string type; 
 
         public enum TrainStatus
         {
@@ -22,6 +22,39 @@ namespace OOP
             this.type = type;
             trainStatus = TrainStatus.EnRoute; // By default trains loaded will be EnRoute
         }
+
+        public string GetID()
+        {
+            return this.id; 
+        }
+
+        public int GetArrivalTime()
+        {
+            return this.arrivalTime; 
+        }
+
+        public void SetArrivalTime(int arrivalTime)
+        {
+            this.arrivalTime = arrivalTime; 
+        }
+
+        public string GetType()
+        {
+            return this.type;
+        }
+
+        public TrainStatus GetTrainStatus()
+        {
+            return this.trainStatus;
+        }
+
+        public void SetTrainStatus(TrainStatus trainStatus)
+        {
+            this.trainStatus = trainStatus;
+        }
+
+
+        
 
         public virtual void ShowTrainInfo()
         {

@@ -5,14 +5,24 @@ namespace OOP
 
     public class PassengerTrain : Train
     {
-        public int numberOfCarriages { get; set; }
-        public int capacity { get; set; }
+        private int numberOfCarriages;
+        private int capacity; 
 
         public PassengerTrain(string id, int arrivalTime, string type, int numberOfCarriages, int capacity)
             : base(id, arrivalTime, type)
         {
             this.numberOfCarriages = numberOfCarriages;
             this.capacity = capacity;
+        }
+
+        public int GetNumberCarriages()
+        {
+            return this.numberOfCarriages; 
+        }
+
+        public int GetCapacity()
+        {
+            return this.capacity; 
         }
         
 
