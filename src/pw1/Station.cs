@@ -10,8 +10,8 @@ namespace OOP
 {
     public class Station
     {
-        public List<Platform> platforms { get; set; }
-        public List<Train> trains { get; set; }
+        private List<Platform> platforms { get; set; }
+        private List<Train> trains { get; set; }
 
         public int minutesPerTick = 15; // Each tick represents 15 minutes
 
@@ -25,9 +25,11 @@ namespace OOP
                 // Creates and adds each unique platform individually to the list platforms 
                 Platform uniquePlatform = new Platform($"Platform-{i}");
                 platforms.Add(uniquePlatform);
+                uniquePlatform.ShowCreatedPlatforms(i); 
 
-                // Shows by console that the platforms are created
-                Console.WriteLine($"Created Platform: {uniquePlatform.id}");
+                
+
+                
             }
         }
 
@@ -163,7 +165,7 @@ namespace OOP
             foreach (var train in trains)
             {
                 // If the ID is repeated a message is shown
-                if (id == train.id)
+                if (id == train.GetID())
                 {
                     Console.WriteLine($"Train {id} already exists");
                     PrintMenu(); // User is returned to the menu. 
@@ -192,20 +194,22 @@ namespace OOP
         {
             foreach (var train in trains)
             {
-                if (train.trainStatus == Train.TrainStatus.EnRoute)
+                if (train.GetTrainStatus() == Train.TrainStatus.EnRoute)
                 {
-                    train.arrivalTime -= minutesPerTick;
 
-                    if (train.arrivalTime <= 0)
+                    int arrivalTime = train.GetArrivalTime() - minutesPerTick;
+                    train.SetArrivalTime(arrivalTime); 
+
+                    if (train.GetArrivalTime() <= 0)
                     {
-                        train.arrivalTime = 0; // We avoid negative values 
-                        Console.WriteLine($"Train {train.id} has reached the station");
+                        train.SetArrivalTime(0); // We avoid negative values 
+                        Console.WriteLine($"Train {train.GetID()} has reached the station");
                         AttempRequestPlatfrom(train);
                     }
 
                 }
 
-                else if (train.trainStatus == Train.TrainStatus.Waiting)
+                else if (train.GetTrainStatus() == Train.TrainStatus.Waiting)
                 {
                     AttempRequestPlatfrom(train);
                 }
@@ -241,16 +245,11 @@ namespace OOP
 
             foreach (var platform in platforms)
             {
-                if (!platformAssigned && platform.platformStatus == Platform.PlatformStatus.Free)
+                if (!platformAssigned)
                 {
-                    platform.RequestPlatform(train); // We request a platform for the train
-                    platformAssigned = true; // We should mark as assigned given that there are free platforms
+                    platformAssigned = platform.RequestPlatform(train); // We request a platform for the train
+                    
                 }
-            }
-            if (!platformAssigned)
-            {
-                Console.WriteLine($"No platforms are available. Train {train.id} is now waiting");
-                train.trainStatus = Train.TrainStatus.Waiting;
             }
         }
 
@@ -259,7 +258,7 @@ namespace OOP
             int countDockedTrains = 0;
             foreach (var train in trains)
             {
-                if (train.trainStatus == Train.TrainStatus.Docked)
+                if (train.GetTrainStatus() == Train.TrainStatus.Docked)
                 {
                     countDockedTrains++;
                 }
