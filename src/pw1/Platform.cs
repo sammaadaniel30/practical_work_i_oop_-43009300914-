@@ -40,11 +40,11 @@ namespace OOP
             {
                 if (dockingTime > 0)
                 {
-                    return $"{id} is ocupied by Train {currentTrain.GetID()}, with {dockingTime} ticks to dock";
+                    return $"{id} is ocupied by Train {currentTrain.GetID()}, with {dockingTime} ticks to dock.";
                 }
                 else
                 {
-                    return $"{id} is ocupied by Train {currentTrain.GetID()}";
+                    return $"{id} is ocupied by Train {currentTrain.GetID()}.";
                 }
             }
         }

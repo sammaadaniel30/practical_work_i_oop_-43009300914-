@@ -13,7 +13,7 @@ namespace OOP
         private List<Platform> platforms { get; set; }
         private List<Train> trains { get; set; }
 
-        public int minutesPerTick = 15; // Each tick represents 15 minutes
+        private int minutesPerTick = 15; // Each tick represents 15 minutes
 
         public Station(int numberOfPlatforms)
         {
@@ -40,9 +40,8 @@ namespace OOP
             Console.WriteLine("|---------------------------------|");
             Console.WriteLine("| Choose an option                |");
             Console.WriteLine("| 1. Load trains from file        |");
-            Console.WriteLine("| 2. Load train manually          |");
-            Console.WriteLine("| 3. Start simulation             |");
-            Console.WriteLine("| 4. Exit                         |");
+            Console.WriteLine("| 2. Start simulation             |");
+            Console.WriteLine("| 3. Exit                         |");
             Console.WriteLine("|---------------------------------|");
             Console.WriteLine("|+++++++++++++++++++++++++++++++++|");
             Console.WriteLine("|---------------------------------|");
@@ -53,38 +52,47 @@ namespace OOP
 
         public void SelectOption()
         {
-            Console.WriteLine(" "); // Blank space for clarity
-            Console.WriteLine("Please select your option ");
-
-            int selection = int.Parse(Console.ReadLine());
-
-            if (selection == 1)
+            try
             {
-                // Attemps to load the trains from a specific file 
-                Console.WriteLine("You have selected to load the trains from files option");
-                LoadTrainsFromFile();
+                Console.WriteLine(" "); // Blank space for clarity
+                Console.WriteLine("Please select your option ");
+
+                int selection = int.Parse(Console.ReadLine());
+
+                if (selection == 1)
+                {
+                    // Attemps to load the trains from a specific file 
+                    Console.WriteLine("You have selected to load the trains from files option");
+                    LoadTrainsFromFile();
+                }
+                else if (selection == 2)
+                {
+                    Console.WriteLine("You have selected to start the simulation.");
+                    StartSimulation();
+                }
+                else if (selection == 3)
+                {
+                    Console.WriteLine("The program will exit.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid option. Please try again.");
+                    PrintMenu();
+                }
             }
-            else if (selection == 2)
+            catch (ArgumentNullException ex2)
             {
-                Console.WriteLine("You have selected to load the trains manually.");
-            }
-            else if (selection == 3)
-            {
-                Console.WriteLine("You have selected to start the simulation.");
-                StartSimulation();
-
-
-
-            }
-            else if (selection == 4)
-            {
-                Console.WriteLine("The program will exit.");
-            }
-            else
-            {
-                Console.WriteLine("Invalid option. Please try again.");
+                Console.WriteLine($"An error has been detected: {ex2.Message}");
+                Console.WriteLine("Please try again, input can't be null");
                 PrintMenu();
             }
+            catch (FormatException ex3)
+            {
+                Console.WriteLine($"An error has been detected: {ex3.Message}");
+                Console.WriteLine("Please try again, input must be a number");
+                PrintMenu(); 
+            }
+
 
 
         }
@@ -96,64 +104,79 @@ namespace OOP
 
         public void LoadTrainsFromFile()
         {
-            // The user must enter the file path
-            Console.WriteLine("Please enter the path of the file you wish to load: ");
-
-            string path = Console.ReadLine();
-
-            using (StreamReader sr = new StreamReader(path))
+            try
             {
-                string line;
+                // The user must enter the file path
+                Console.WriteLine("Please enter the path of the file you wish to load: ");
 
-                string separator = ",";
+                string path = Console.ReadLine();
 
-                sr.ReadLine(); // Skips the header
-
-                // Reads the file per file until it is blank
-                while ((line = sr.ReadLine()) != null)
+                using (StreamReader sr = new StreamReader(path))
                 {
-                    string[] fields = line.Split(separator);
+                    string line;
 
+                    string separator = ",";
 
-                    // We assign the data 
-                    string id = fields[0];
+                    sr.ReadLine(); // Skips the header
 
-                    // Checks no duplicate ID's for each train 
-                    CheckID(id);
-
-
-                    int arrivalTime = Int32.Parse(fields[1]);
-                    string type = fields[2];
-
-                    if (type == "Passenger")
+                    // Reads the file per file until it is blank
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        int numberOfCarriages = int.Parse(fields[3]);
-                        int capacity = Int32.Parse(fields[4]);
-                        trains.Add(new PassengerTrain(id, arrivalTime, type, numberOfCarriages, capacity));
+                        string[] fields = line.Split(separator);
 
+
+                        // We assign the data 
+                        string id = fields[0];
+
+                        // Checks no duplicate ID's for each train 
+                        CheckID(id);
+
+
+                        int arrivalTime = Int32.Parse(fields[1]);
+                        string type = fields[2];
+
+                        if (type == "Passenger")
+                        {
+                            int numberOfCarriages = int.Parse(fields[3]);
+                            int capacity = Int32.Parse(fields[4]);
+                            trains.Add(new PassengerTrain(id, arrivalTime, type, numberOfCarriages, capacity));
+
+
+                        }
+                        else if (type == "Freight")
+                        {
+                            int maxWeight = int.Parse(fields[3]);
+                            string freightType = fields[4];
+                            trains.Add(new FreightTrain(id, arrivalTime, type, maxWeight, freightType));
+                        }
 
                     }
-                    else if (type == "Freight")
+
+                    // As per the statement, a file with a minimum of 15 trains should be loaded
+                    if (trains.Count < 15)
                     {
-                        int maxWeight = int.Parse(fields[3]);
-                        string freightType = fields[4];
-                        trains.Add(new FreightTrain(id, arrivalTime, type, maxWeight, freightType));
+                        trains.Clear();
+                        Console.WriteLine("You must give a file with 15 trains minimum");
+                        PrintMenu(); // Returns the user to the menu
                     }
 
+
+                    DisplayStatus();
+                    PrintMenu();
+
                 }
-
-                // As per the statement, a file with a minimum of 15 trains should be loaded
-                if (trains.Count < 15)
-                {
-                    trains.Clear();
-                    Console.WriteLine("You must give a file with 15 trains minimum");
-                    PrintMenu(); // Returns the user to the menu
-                }
-
-
-                DisplayStatus();
-                PrintMenu();
-
+            }
+            catch (FileNotFoundException ex4)
+            {
+                Console.WriteLine($"An error has been detected: {ex4.Message}");
+                Console.WriteLine("Please introduce the path of a file which exists");
+                LoadTrainsFromFile();
+            }
+            catch (ArgumentNullException ex5)
+            {
+                Console.WriteLine($"An error has been detected: {ex5.Message}");
+                Console.WriteLine("The inputted path can't be blank. Please try again");
+                LoadTrainsFromFile(); 
             }
 
 
