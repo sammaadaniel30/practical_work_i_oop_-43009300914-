@@ -8,7 +8,8 @@ namespace OOP
 
         public static void Main()
         {
-
+            // Deletes any previous data in the console
+            Console.Clear(); 
             Console.WriteLine("Welcome to the UFV Train Station Management System");
             Console.WriteLine("");
 
@@ -18,6 +19,9 @@ namespace OOP
 
             // Instantation and passing the desired number of platforms
             Station station = new Station(numberPlatforms);
+
+            /* As such there's not a limit on the number of platfroms however entering a realistic example 
+            is recommened, as it is not possible to make a station to have for example 50 platforms. */ 
 
             station.PrintMenu(); // Print the options menu
 
