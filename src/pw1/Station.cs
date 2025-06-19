@@ -1,6 +1,9 @@
 using System;
+using System.Net.NetworkInformation;
 using System.Runtime;
 using System.Runtime.ExceptionServices;
+using System.Security.Cryptography;
+using Microsoft.VisualBasic;
 
 namespace OOP
 {
@@ -65,6 +68,8 @@ namespace OOP
             else if (selection == 3)
             {
                 Console.WriteLine("You have selected to start the simulation.");
+                StartSimulation(); 
+
 
 
             }
@@ -79,6 +84,11 @@ namespace OOP
             }
 
 
+        }
+
+        public void StartSimulation()
+        {
+            AdvanceTick(); 
         }
 
         public void LoadTrainsFromFile()
@@ -106,7 +116,7 @@ namespace OOP
                     string id = fields[0];
 
                     // Checks no duplicate ID's for each train 
-                    CheckID(id); 
+                    CheckID(id);
 
 
                     int arrivalTime = Int32.Parse(fields[1]);
@@ -138,7 +148,8 @@ namespace OOP
                 }
 
 
-                DisplayStatus(); 
+                DisplayStatus();
+                PrintMenu();
 
             }
 
@@ -157,15 +168,15 @@ namespace OOP
                     PrintMenu(); // User is returned to the menu. 
                 }
             }
-            
-        } 
+
+        }
 
         public void DisplayStatus()
         {
             Console.WriteLine("\n=============== PLATFORMS STATUS ================");
             foreach (var platform in platforms)
             {
-                Console.WriteLine(platform.GetStatus()); 
+                Console.WriteLine(platform.GetStatus());
             }
 
             Console.WriteLine("\n=============== TRAINS STATUS ===================");
@@ -174,6 +185,59 @@ namespace OOP
                 train.ShowTrainInfo();
             }
             Console.WriteLine("=================================================\n");
+        }
+
+        public void AdvanceTick()
+        {
+            foreach (var train in trains)
+            {
+                if (train.trainStatus == Train.TrainStatus.EnRoute)
+                {
+                    train.arrivalTime -= minutesPerTick;
+
+                    if (train.arrivalTime <= 0)
+                    {
+                        train.arrivalTime = 0; // We avoid negative values 
+                        train.trainStatus = Train.TrainStatus.Waiting;
+                    }
+
+                }
+
+                else if (train.trainStatus == Train.TrainStatus.Waiting)
+                {
+                    bool platformAssigned = false; // Indication wether the train is assigned to a platform 
+
+                    foreach (var platform in platforms)
+                    {
+                        if (!platformAssigned && platform.platformStatus == Platform.PlatformStatus.Free)
+                        {
+                            platform.RequestPlatform(train); // We request a platform for the train
+                            platformAssigned = true; // We should mark as assigned given that there are free platforms
+                        }
+                    }
+                }
+            }
+
+            foreach (var platform in platforms)
+            {
+                platform.UpdateTick();
+            }
+
+            DisplayStatus(); // Shows the station info
+
+            // Asks the user if he wants another tick or go back to the menu
+            Console.WriteLine("Press any key to do another tick simulation");
+
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "menu")
+            {
+                PrintMenu();
+            }
+            else
+            {
+                StartSimulation(); 
+            }
         }
     }
 
