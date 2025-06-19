@@ -1,10 +1,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 using System.Net.NetworkInformation;
 using System.Runtime;
 using System.Runtime.ExceptionServices;
 using System.Security.Cryptography;
 using Microsoft.VisualBasic;
+using Microsoft.Win32.SafeHandles;
 
 namespace OOP
 {
@@ -17,24 +19,24 @@ namespace OOP
 
         public Station(int numberOfPlatforms)
         {
-            platforms = new List<Platform>();
-            trains = new List<Train>();
+            platforms = new List<Platform>(); // Creation of the list of platforms
+            trains = new List<Train>(); // Creation of the list of trains
 
             for (int i = 1; i <= numberOfPlatforms; i++)
             {
                 // Creates and adds each unique platform individually to the list platforms 
                 Platform uniquePlatform = new Platform($"Platform-{i}");
                 platforms.Add(uniquePlatform);
+
+                // Shows to the user the created platforms
                 uniquePlatform.ShowCreatedPlatforms(i); 
 
-                
-
-                
             }
         }
 
         public void PrintMenu()
         {
+            // Shows the possible options to the user
             Console.WriteLine("___________________________________");
             Console.WriteLine("|+++++++++++ Train UFV +++++++++++|");
             Console.WriteLine("|---------------------------------|");
@@ -46,7 +48,7 @@ namespace OOP
             Console.WriteLine("|+++++++++++++++++++++++++++++++++|");
             Console.WriteLine("|---------------------------------|");
 
-            SelectOption();
+            SelectOption(); // Calls the Select Option method 
 
         }
 
@@ -55,74 +57,114 @@ namespace OOP
             try
             {
                 Console.WriteLine(" "); // Blank space for clarity
-                Console.WriteLine("Please select your option ");
 
+                // Asks the user for the option he desires
+                Console.WriteLine("Please select your option ");
                 int selection = int.Parse(Console.ReadLine());
 
+                // If the user wishes to load the trains from a file 
                 if (selection == 1)
                 {
                     // Attemps to load the trains from a specific file 
                     Console.WriteLine("You have selected to load the trains from files option");
+                    // Calls the method which loads the files 
                     LoadTrainsFromFile();
                 }
+                // If the user wishes to start the simulation
                 else if (selection == 2)
                 {
                     Console.WriteLine("You have selected to start the simulation.");
+                    // Calls for starting the simulaiton 
                     StartSimulation();
                 }
+                // If the user wishes to exit the program manually 
                 else if (selection == 3)
                 {
-                    Console.WriteLine("The program will exit.");
+                    // The program will finish
+                    Console.WriteLine("You have selected to exit the program."); 
+                    Console.WriteLine("The program has exitted successfully.");
                 }
+                // If the users enters a non-existent option 
                 else
                 {
+                    // The user is informed about the option which is unavailable
                     Console.WriteLine("Invalid option. Please try again.");
-                    PrintMenu();
+                    PrintMenu(); // User is shown again the options
                 }
             }
+            // If the input is null 
             catch (ArgumentNullException ex2)
             {
+                // Tells the user about the error
                 Console.WriteLine($"An error has been detected: {ex2.Message}");
                 Console.WriteLine("Please try again, input can't be null");
-                PrintMenu();
+                PrintMenu(); // User is shown again the options 
             }
+            // If the input is not a number 
             catch (FormatException ex3)
             {
+                // Tells the user about the error 
                 Console.WriteLine($"An error has been detected: {ex3.Message}");
                 Console.WriteLine("Please try again, input must be a number");
-                PrintMenu(); 
+                PrintMenu(); // User is shown again the options 
             }
-
-
 
         }
 
         public void StartSimulation()
         {
-            AdvanceTick();
+            AdvanceTick(); // Start to manage the trains arriving at the station 
         }
 
         public void LoadTrainsFromFile()
         {
             try
             {
-                // The user must enter the file path
+                // The user must enter the file path, and also shows the warning on how the program works
+                Console.WriteLine("WARNING!: The program treats the file has a header.");
+                Console.WriteLine("If your program does not have a header please add a blank line at the top of the file.");
+                Console.WriteLine("Otherwise some trains may be not loaded");  
                 Console.WriteLine("Please enter the path of the file you wish to load: ");
-
                 string path = Console.ReadLine();
 
+                string separator = ",";
+                bool hasHeader = false;
+
+                // Checks if there is a header
+                using (StreamReader checkHeader = new StreamReader(path))
+                {
+                    string firstLine = checkHeader.ReadLine();
+
+                    string[] fields = firstLine.Split(separator); // Splits the first line into fields 
+
+                    if (fields[0].Trim().ToLower() == "id") // If "id" is found in the first line
+                    {
+                        hasHeader = true; // We assign the bool for true
+                    }
+                    // We close the file 
+                    checkHeader.Close();
+
+                }
+
+              
+
+                // Instantation of a StreamReader to read the data from the file 
                 using (StreamReader sr = new StreamReader(path))
                 {
-                    string line;
 
-                    string separator = ",";
+                    if (hasHeader) // A header has been found 
+                    {
+                        sr.ReadLine(); // Skips the header (first line)
+                    }
 
-                    sr.ReadLine(); // Skips the header
+                    string line; 
 
                     // Reads the file per file until it is blank
                     while ((line = sr.ReadLine()) != null)
                     {
                         string[] fields = line.Split(separator);
+
+
 
 
                         // We assign the data 
@@ -149,7 +191,6 @@ namespace OOP
                             string freightType = fields[4];
                             trains.Add(new FreightTrain(id, arrivalTime, type, maxWeight, freightType));
                         }
-
                     }
 
                     // As per the statement, a file with a minimum of 15 trains should be loaded
@@ -160,7 +201,8 @@ namespace OOP
                         PrintMenu(); // Returns the user to the menu
                     }
 
-
+                    // We close the file 
+                    sr.Close();
                     DisplayStatus();
                     PrintMenu();
 
@@ -199,12 +241,13 @@ namespace OOP
 
         public void DisplayStatus()
         {
+            // Prints the status of the platforms 
             Console.WriteLine("\n=============== PLATFORMS STATUS ================");
             foreach (var platform in platforms)
             {
                 Console.WriteLine(platform.GetStatus());
             }
-
+            // Prints the status of all of the trains
             Console.WriteLine("\n=============== TRAINS STATUS ===================");
             foreach (var train in trains)
             {
@@ -217,81 +260,90 @@ namespace OOP
         {
             foreach (var train in trains)
             {
+                // If trains are EnRoute
                 if (train.GetTrainStatus() == Train.TrainStatus.EnRoute)
                 {
-
+                    // We decrement the amount of arrivaltime by the value of each tick
                     int arrivalTime = train.GetArrivalTime() - minutesPerTick;
-                    train.SetArrivalTime(arrivalTime); 
+                    train.SetArrivalTime(arrivalTime);
 
+
+                    // When arrival time is 0 or less 
                     if (train.GetArrivalTime() <= 0)
                     {
                         train.SetArrivalTime(0); // We avoid negative values 
-                        Console.WriteLine($"Train {train.GetID()} has reached the station");
-                        AttempRequestPlatfrom(train);
+                        Console.WriteLine($"Train {train.GetID()} has reached the station"); // Informs the user that the train has arrived
+                        AttempRequestPlatfrom(train); // Attemps to request a platform to start the process of docking 
                     }
 
                 }
 
+                // If the train is waiting 
                 else if (train.GetTrainStatus() == Train.TrainStatus.Waiting)
                 {
+                    // Attemps to request a platform to start the process of docking
                     AttempRequestPlatfrom(train);
                 }
             }
 
             foreach (var platform in platforms)
             {
-                platform.UpdateTick();
+                platform.UpdateTick(); // We update the ticks for each train docking in their respective platform
             }
 
             DisplayStatus(); // Shows the station info
 
-            CheckDockedTrains(); 
+            CheckDockedTrains(); // Checks if all of the train from the file have been docked 
 
             // Asks the user if he wants another tick or go back to the menu
             Console.WriteLine("Press any key to do another tick simulation, or type Menu to return to the main menu");
-
             string input = Console.ReadLine();
 
+            // If the user types menu (in any way) 
             if (input.ToLower() == "menu")
             {
-                PrintMenu();
+                PrintMenu(); // Returns the user to the menu 
             }
             else
             {
-                StartSimulation();
+                StartSimulation(); // Otherwise the simulation continues 
             }
         }
 
+        // Each train attemps to request a platform 
         public void AttempRequestPlatfrom(Train train)
         {
-            bool platformAssigned = false; // Indication wether the train is assigned to a platform 
+            bool assigned = false; // Indication wether the train is assigned to a platform 
 
             foreach (var platform in platforms)
             {
-                if (!platformAssigned)
+                if (!assigned) // If the train has not been assigned to a platform
                 {
-                    platformAssigned = platform.RequestPlatform(train); // We request a platform for the train
-                    
+                    assigned = platform.RequestPlatform(train); // We request a platform for the train
+
                 }
             }
         }
 
         public void CheckDockedTrains()
         {
-            int countDockedTrains = 0;
+            int countDockedTrains = 0; // Counter of each train docked 
             foreach (var train in trains)
             {
+                // Counts the number of trains already docked 
                 if (train.GetTrainStatus() == Train.TrainStatus.Docked)
                 {
                     countDockedTrains++;
                 }
             }
 
+            // When the number of trains docked are the same as the ones in the list loaded from the file 
             if (countDockedTrains == trains.Count)
             {
-                Console.WriteLine("All trains have been docked");
+                // The program finishes 
+                Console.WriteLine($"All {countDockedTrains} trains have been docked successfully");
                 Console.WriteLine("The program will now finish");
-                Environment.Exit(0); 
+                Environment.Exit(0);
             }
         }
 
