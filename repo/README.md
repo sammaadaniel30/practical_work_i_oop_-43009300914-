@@ -40,3 +40,6 @@ Added a method to make sure no duplicate ID's are loaded from the file.
 ### 19/06/2025 ###
 
 Implemented the GetStatus method in the platform, in order to fully print the status of the platform in the DisplayStatus method. 
+
+Changed a variable name for more clarity. 
+
