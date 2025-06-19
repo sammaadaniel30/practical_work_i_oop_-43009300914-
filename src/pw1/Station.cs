@@ -68,7 +68,7 @@ namespace OOP
             else if (selection == 3)
             {
                 Console.WriteLine("You have selected to start the simulation.");
-                StartSimulation(); 
+                StartSimulation();
 
 
 
@@ -88,7 +88,7 @@ namespace OOP
 
         public void StartSimulation()
         {
-            AdvanceTick(); 
+            AdvanceTick();
         }
 
         public void LoadTrainsFromFile()
@@ -198,23 +198,15 @@ namespace OOP
                     if (train.arrivalTime <= 0)
                     {
                         train.arrivalTime = 0; // We avoid negative values 
-                        train.trainStatus = Train.TrainStatus.Waiting;
+                        Console.WriteLine($"Train {train.id} has reached the station");
+                        AttempRequestPlatfrom(train);
                     }
 
                 }
 
                 else if (train.trainStatus == Train.TrainStatus.Waiting)
                 {
-                    bool platformAssigned = false; // Indication wether the train is assigned to a platform 
-
-                    foreach (var platform in platforms)
-                    {
-                        if (!platformAssigned && platform.platformStatus == Platform.PlatformStatus.Free)
-                        {
-                            platform.RequestPlatform(train); // We request a platform for the train
-                            platformAssigned = true; // We should mark as assigned given that there are free platforms
-                        }
-                    }
+                    AttempRequestPlatfrom(train);
                 }
             }
 
@@ -225,8 +217,9 @@ namespace OOP
 
             DisplayStatus(); // Shows the station info
 
+
             // Asks the user if he wants another tick or go back to the menu
-            Console.WriteLine("Press any key to do another tick simulation");
+            Console.WriteLine("Press any key to do another tick simulation, or type Menu to return to the main menu");
 
             string input = Console.ReadLine();
 
@@ -236,9 +229,28 @@ namespace OOP
             }
             else
             {
-                StartSimulation(); 
+                StartSimulation();
             }
         }
-    }
 
+        public void AttempRequestPlatfrom(Train train)
+        {
+            bool platformAssigned = false; // Indication wether the train is assigned to a platform 
+
+            foreach (var platform in platforms)
+            {
+                if (!platformAssigned && platform.platformStatus == Platform.PlatformStatus.Free)
+                {
+                    platform.RequestPlatform(train); // We request a platform for the train
+                    platformAssigned = true; // We should mark as assigned given that there are free platforms
+                }
+            }
+            if (!platformAssigned)
+            {
+                Console.WriteLine($"No platforms are available. Train {train.id} is now waiting");
+                train.trainStatus = Train.TrainStatus.Waiting;
+            }
+        }
+
+    }
 }
