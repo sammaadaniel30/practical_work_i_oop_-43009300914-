@@ -165,7 +165,7 @@ namespace OOP
             Console.WriteLine("\n=============== PLATFORMS STATUS ================");
             foreach (var platform in platforms)
             {
-                Console.WriteLine("Here the platforms' status will be printed");
+                Console.WriteLine(platform.GetStatus()); 
             }
 
             Console.WriteLine("\n=============== TRAINS STATUS ===================");

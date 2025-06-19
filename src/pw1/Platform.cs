@@ -1,7 +1,7 @@
 using System;
 
 namespace OOP
-{ 
+{
 
     public class Platform
     {
@@ -22,6 +22,18 @@ namespace OOP
             platformStatus = PlatformStatus.Free;
             this.currentTrain = null;
             this.dockingTimeRemaining = 0;
+        }
+
+        public string GetStatus()
+        {
+            if (platformStatus == PlatformStatus.Free)
+            {
+                return $"{id} IS FREE";
+            }
+            else
+            {
+                return $"{id} is ocupied by Train {currentTrain.id}"; 
+            }
         }
     }
 
