@@ -21,18 +21,20 @@ namespace OOP
             this.id = id;
             platformStatus = PlatformStatus.Free;
             this.currentTrain = null;
-            this.dockingTimeRemaining = 0;
+            this.dockingTimeRemaining = 2; // Time for docking requiered
         }
 
         public string GetStatus()
         {
+            // If a platform is free 
             if (platformStatus == PlatformStatus.Free)
             {
                 return $"{id} IS FREE";
             }
+            // If a platform is not free 
             else
             {
-                return $"{id} is ocupied by Train {currentTrain.id}"; 
+                return $"{id} is ocupied by Train {currentTrain.id}, with {dockingTimeRemaining} ticks to dock";
             }
         }
     }
