@@ -33,7 +33,14 @@ namespace OOP
             // If a platform is not free 
             else
             {
-                return $"{id} is ocupied by Train {currentTrain.id}, with {dockingTime} ticks to dock";
+                if (dockingTime > 0)
+                {
+                    return $"{id} is ocupied by Train {currentTrain.id}, with {dockingTime} ticks to dock";
+                }
+                else
+                {
+                    return $"{id} is ocupied by Train {currentTrain.id}";
+                }
             }
         }
 
@@ -44,12 +51,8 @@ namespace OOP
                 platformStatus = PlatformStatus.Occupied; // The platform is being used by a train
                 currentTrain = train; // We assign a train to a specific platform
                 dockingTime = 2; // We reset the ticks remaning to dock
-                Console.WriteLine($"Train: {train.id} is docking on {id}");
+                Console.WriteLine($"Train: {currentTrain.id} is docking on {id}");
                 train.trainStatus = Train.TrainStatus.Docking; // We change the status of the train to docking
-            }
-            else
-            {
-                Console.WriteLine($"{id} is not free at the moment"); // We tell the user that the platform is not free
             }
         }
 
@@ -63,8 +66,9 @@ namespace OOP
 
                 if (dockingTime <= 0)
                 {
+                    dockingTime = 0; 
                     currentTrain.trainStatus = Train.TrainStatus.Docked;
-                    Console.WriteLine($"Train {id} has docked in {id}"); 
+                    Console.WriteLine($"Train {currentTrain.id} has docked in {id}"); 
                 }
             }
         }
