@@ -55,7 +55,7 @@ namespace OOP
 
 
         
-
+        // Shows the info of the train 
         public virtual void ShowTrainInfo()
         {
             Console.Write($"ID: {id} | Arrival Time: {arrivalTime} | Type: {type} km | Status: {trainStatus}");

@@ -25,6 +25,7 @@ namespace OOP
             return this.freightType; 
         }
 
+        // Shows the info of the base class + its own attributes from the subclass freight 
         public override void ShowTrainInfo()
         {
             base.ShowTrainInfo();

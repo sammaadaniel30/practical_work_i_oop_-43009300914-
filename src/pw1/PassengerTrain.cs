@@ -25,6 +25,7 @@ namespace OOP
             return this.capacity; 
         }
         
+        // Shows the info of the base class + its own attributes from the subclass passenger
 
         public override void ShowTrainInfo()
         {
