@@ -56,3 +56,5 @@ Removed uneccessary code in the Platform class.
 Added a method to check when all the trains are docked and end the program. 
 
 Fixed minimal erros in the program class. 
+
+Added setters and getters as well as changed the atributes of each class(not applied to Program) to the maximum access modifier possible to enhance encapsulation. (Protected for attributes in Train Class, rest are private). 
