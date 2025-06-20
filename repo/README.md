@@ -66,3 +66,5 @@ Fixed some typos in the Program Class.
 Added comments on all classes. 
 
 Made a change in the LoadTrainFromFile method in the Station class, to automatically load the trains from a file regardless if it has a header or not, without losing data of trains. 
+
+Added the cover image to put on the README.md.
