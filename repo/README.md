@@ -70,3 +70,5 @@ Made a change in the LoadTrainFromFile method in the Station class, to automatic
 Added the cover image to put on the README file. 
 
 Made some changes into the behaviour of the program. 
+
+Added the class Diagram Image. 
