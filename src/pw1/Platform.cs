@@ -20,7 +20,7 @@ namespace OOP
             this.id = id;
             platformStatus = PlatformStatus.Free; // By default all platforms are free when instantiated 
             this.currentTrain = null;
-            this.dockingTime = 2; // Time for docking requiered
+            this.dockingTime = 3; // Time for docking requiered, it is 3 given that the first iteration already takes away a tick
         }
 
         // Shows to the user the amount of platforms created and their names
@@ -40,9 +40,13 @@ namespace OOP
             else
             {
                 // If the docking time is bigger than 0
-                if (dockingTime > 0)
+                if (dockingTime >= 2)
                 {
-                    return $"{id} is ocupied by Train {currentTrain.GetID()}, with {dockingTime} ticks to dock.";
+                    return $"{id} is ocupied by Train: {currentTrain.GetID()}, with {dockingTime} ticks remaining to dock.";
+                }
+                else if (dockingTime == 1)
+                {
+                    return $"{id} is occupied by Train: {currentTrain.GetID()}, with {dockingTime} tick remaining to dock ";
                 }
                 // Otherwise
                 else
@@ -81,16 +85,15 @@ namespace OOP
         {
             if (platformStatus == PlatformStatus.Occupied && currentTrain != null)
             {
-                dockingTime--; // We substract a tick
-
-                GetStatus(); // We show the user the state of the platforms 
+                dockingTime--; // We substract a tick 
 
                 if (dockingTime <= 0)
                 {
                     dockingTime = 0;
                     currentTrain.SetTrainStatus(Train.TrainStatus.Docked); // We change the status of the train to docked
                     platformStatus = PlatformStatus.Free; // We free the platform 
-                    Console.WriteLine($"Train {currentTrain.GetID()} has docked leaving {id} free"); 
+                    Console.WriteLine($"Train {currentTrain.GetID()} with {dockingTime} ticks remaining, has docked, leaving {id} free");
+                    Console.WriteLine(" "); // Black space for clarity 
                 }
             }
         }

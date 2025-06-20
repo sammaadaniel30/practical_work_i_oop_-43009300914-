@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Data.Common;
 using System.Net.NetworkInformation;
 using System.Runtime;
@@ -16,6 +17,8 @@ namespace OOP
         private List<Train> trains { get; set; }
 
         private int minutesPerTick = 15; // Each tick represents 15 minutes
+        
+        private bool allTrainsDocked = false; // Controls when all trains have been docked 
 
         public Station(int numberOfPlatforms)
         {
@@ -29,7 +32,7 @@ namespace OOP
                 platforms.Add(uniquePlatform);
 
                 // Shows to the user the created platforms
-                uniquePlatform.ShowCreatedPlatforms(i); 
+                uniquePlatform.ShowCreatedPlatforms(i);
 
             }
         }
@@ -48,12 +51,17 @@ namespace OOP
             Console.WriteLine("|+++++++++++++++++++++++++++++++++|");
             Console.WriteLine("|---------------------------------|");
 
+            
+
+           
+
             SelectOption(); // Calls the Select Option method 
 
         }
 
         public void SelectOption()
         {
+
             try
             {
                 Console.WriteLine(" "); // Blank space for clarity
@@ -108,7 +116,6 @@ namespace OOP
                 Console.WriteLine("Please try again, input must be a number");
                 PrintMenu(); // User is shown again the options 
             }
-
         }
 
         public void StartSimulation()
@@ -295,18 +302,23 @@ namespace OOP
 
             CheckDockedTrains(); // Checks if all of the train from the file have been docked 
 
-            // Asks the user if he wants another tick or go back to the menu
-            Console.WriteLine("Press any key to do another tick simulation, or type Menu to return to the main menu");
-            string input = Console.ReadLine();
+            // As long as not all the trains have been docked
+            if (!allTrainsDocked)
+            {
 
-            // If the user types menu (in any way) 
-            if (input.ToLower() == "menu")
-            {
-                PrintMenu(); // Returns the user to the menu 
-            }
-            else
-            {
-                StartSimulation(); // Otherwise the simulation continues 
+                // Asks the user if he wants another tick or go back to the menu
+                Console.WriteLine("Press any key to do another tick simulation, or type Menu to return to the main menu");
+                string input = Console.ReadLine();
+
+                // If the user types menu (in any way) 
+                if (input.ToLower() == "menu")
+                {
+                    PrintMenu(); // Returns the user to the menu 
+                }
+                else
+                {
+                    StartSimulation(); // Otherwise the simulation continues 
+                }
             }
         }
 
@@ -343,7 +355,7 @@ namespace OOP
                 // The program finishes 
                 Console.WriteLine($"All {countDockedTrains} trains have been docked successfully");
                 Console.WriteLine("The program will now finish");
-                Environment.Exit(0);
+                allTrainsDocked = true; // When all trains have been docked 
             }
         }
 
