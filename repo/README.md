@@ -15,7 +15,11 @@ This repository is the base element for the development of Practice 1 for the ex
 - [3. INTRODUCTION](#3-introduction)
  - [3.1 NAMES OF THE GROUP MEMBERS](#31-names-of-the-group-members)
  - [3.2 SUMMARY OF THE DOCUMENT](#32-summary-of-the-document)
-- [4. DESCRIPTION](#4-description)
+- [4. DESCRIPTION](#4-description) 
+ - [4.1 PROPOSED SOLUTION](#41-proposed-solution)
+ - [4.2 CLASS DIAGRAM](#42-class-diagram)
+ - [4.3 DEVELIPMENT CONSIDERATIONS](#43-development-considerations)
+
 
 
 
@@ -31,6 +35,76 @@ This document shows all of the inform regarding on how OOP principles have been 
 
 ## 4. DESCRIPTION
 
+### 4.1 PROPOSED SOLUTION 
+
+The program has been developed into 6 classes (including the Program class), in which each class does something specific. The classes in the program are as they follow: 
+
+**PROGRAM**: This is the entry point of the program, in where the user is given the welcome message and where the user is also asked about how many platforms he wishes the platform to have. After this the station is instantiated with the specific amount of platforms the user has asked. Then the program is taken to the to a method in the Station class which displays a menu for the user. 
+
+**STATION**: This is probably the most importnt class in the whole program, as it creates the list of Trains and Platforms. Tells the user which options to select, controls the inputs, loads the trains' data from a specific file; adds those trains list making sure data has been entered appropiately, making sure no ID is reapeted and also checking that at least the data of 15 trains is found, otherwise the trains are not loaded to the program. Futhermore, for each tick in the simulation, each train's arrival time is reduced by 15 minutes, shows the status of the trains and the platforms, and when a train is waiting it sends a request to the Platfrom class to start the docking of a train. The attributes used in this class are as follows: 
+
+Train: List<Platform> platforms -> Creates the list of platfroms (number of them is given by the user).
+Platform: List<Train> trains -> Creates the list of the trains (loaded from a specific file given by the user).
+
+Compositions was used for both lists, in the context of platfroms, a platform can't exist if there is no station, the same can be argued vice-versa. It can also be argued that the station has no point in existing if there are no trains which use it. 
+
+Other attributes are: 
+
+int minutesPerTick = 15 -> Makes sure that each of the ticks represents 15 minutes. 
+        
+bool allTrainsDocked = false -> Controls when all trains have been docked to automatically stop the simulation.
+
+**PLATFORM**: Ths class managed everything related to the platform, like assigning a train to a platfrom when the platform is free, calculating the ticks the train needs to fully dock, and well as changing the proper state of the platform when its freed or occupied. This class essentially takes and checks the request, from the Station class, to assign a train to a platform, if it is possible and communicates it back to the Station class. The attributes in this class are as follows: 
+
+string id -> Defines the id of each platform.
+
+enum PlatformStatus platformStatus -> Defines the state of the platform in each tick.
+
+Train currentTrain -> Property, which assigns a train to a specific platform.
+
+int dockingTime -> The amount of ticks neccesary for the docking process to finish.
+
+**TRAIN**: This is an abstract class, it used the principle of abstraction as each of the trains loaded will have to be one of the subclasses (Freight or Passenger), in other words each train will only belong to a specific subclass, thus no general Train is created. This class also uses the principle of inheritance as it is the superclass of each train created. Furthermore this class uses polymorphism principles as there is a virtual method which prints the generic characteristics of each train and then overrides methods in the subclasses, it prints the base method and then the override method. The attributes in this class are as follows: 
+
+string id -> Defines the train number 
+
+TrainStatus trainStatus -> Defines the state of the train (EnRoute, Waiting, Docking, Docked).
+
+int arrivalTime -> The arrival time, in other words, the time remaining until the train reached the station.
+
+string type -> Shows the type of train (Passenger or Freight).
+
+**FREIGHTTRAIN**: This is a subclass which inherits from the superclass of Train. It has the override method which prints the 2 extra attributes which only exist with Freight Trains. The attributes from the Superclass are passed down, the unique attributes for this class are as they follow: 
+
+int maxWeight -> The maximum weight a specific freight train can carry. 
+
+string freightType -> The type of goods a specific freight train is carrying.
+
+**PASSENGERTRAIN**: This is a subclass which inherits from the superclass of Train. It has the override method which prints the 2 extra attributes which only exist with Passenger Trains. The attributes from the Superclass are passed down, the unique attributes for this class are as they follow: 
+
+int numberOfCarriages -> The number of carriages a certain passenger train has. 
+
+int capacity -> The amount of capacity a certain passenger train has. 
+
+### 4.2 CLASS DIAGRAM 
+
+<div align="center">
+    <img src="../files/readme_files/CLASS_DIAGRAM.png" alt="README.md image showing the class diagram of the program" width="95%">
+</div>
+
+### 4.3 DEVELOPMENT CONSIDERATIONS
+
+- The different consideration must be followed to develop the program: 
+
+- The user input to the program how many platforms there may be in the station.
+
+- The program must implement comprehensive input validation to handle errors. 
+
+- The user also input to the program (through keyboard) the path to the file where the train data is to be loaded to the program. 
+
+- The file must also have a minimum of 15 trains to be loaded. 
+
+## 5. PROBLEMS & CHALLENGES
 
 
 
