@@ -120,6 +120,34 @@ Finally, a problem that I thinked of was, even if a file is found and the data f
 
 ## 6. CONCLUSIONS
 
+### 6.1 LESSONS LEARNED 
+
+One lesson that I have learned is how powerfull the enums have been to do this project not only because it is a variable, which also makes it easier, but also because when using them in method in which they autodefine themselves when typing and they save a lot of time when programming and also they enhance clearness to both the user and the developer. 
+
+Another thing which I have learned is how efficient also the List tool, it is like creating a database but where multiple object of subclases can be stored there and later with a foreach loop can be reached, all of them without any problems or difficulties. 
+
+Both of them when being developed, as starting the program from scratch may take some time and may be a bit tideous, but from the point of view of developing a program they are very efficient. 
+
+Finally, another thing that I have learned is the power, efectiveness and efficienty of using the encapsulation principles, like being able to make attributes private and only being passed when the program specificaly asks for them using setter and getter methods. 
+
+### 6.2 EFFECTIVENESS 
+
+I can say that this program now complies with the given requierements for the Practical Work 1 (Extraordinary). Where it correcly simulates the arrival of trains using the principles of OOP. 
+
+Even though not mentioned in the Practical Work 1 statement, I have made sure to add more behaviours to avoid potential accidental erros and have a more realistic process. Some of the new behaviours include. 
+
+ - No same trains will have the same ID 
+ - When a train has reached the station the arrival time, even though the program after substraction could make it negative, it is set to 0, to avoid understading errors and keeping the simulation as close as possible to a real scenario. 
+ - When a train is in a Waiting state, if no Platforms are available the train will continue to be in a Waiting state. 
+ - Also catch exceptions have been done to prenvent errors. 
+
+### 6.3 INSIGHTS GAINED
+
+As stated before, the insights I have learned is overall how to use the enums and how powerful and efficient they can be not only for being clear and simple, but also because they are easy to create and when programming how they can reduce time. 
+
+Another thing I could say is that as I was advancing with the planning and the creation of the project we have also realized how and where to implement the principles of OOP (Polymorphism, Abstraction, Encapsulation and Inheritance), I only knew how to implement inheritance and polymorphism, but thanks to this project I have been able to understand how Encapsulation works and how to apply it in a program.  
+
+
 ## TIMELINE OF DEVELOPMENT ##
 
 ### 12/06/2025 ###
