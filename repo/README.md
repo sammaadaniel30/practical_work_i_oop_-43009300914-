@@ -20,6 +20,10 @@ This repository is the base element for the development of Practice 1 for the ex
  - [4.2 CLASS DIAGRAM](#42-class-diagram)
  - [4.3 DEVELIPMENT CONSIDERATIONS](#43-development-considerations)
 - [5. PROBLEMS & CHALLENGES](#5-problems--challenges)
+- [6. CONCLUSIONS](#6-conclusions)
+ - [6.1 LESSONS LEARNED](#61-lessons-learned)
+ - [6.2 EFFECTIVENESS](#62-effectiveness)
+ - [6.3 INSIGHTS LEARNED](#63-insights-gained)
 
 
 
@@ -146,6 +150,8 @@ Even though not mentioned in the Practical Work 1 statement, I have made sure to
 As stated before, the insights I have learned is overall how to use the enums and how powerful and efficient they can be not only for being clear and simple, but also because they are easy to create and when programming how they can reduce time. 
 
 Another thing I could say is that as I was advancing with the planning and the creation of the project we have also realized how and where to implement the principles of OOP (Polymorphism, Abstraction, Encapsulation and Inheritance), I only knew how to implement inheritance and polymorphism, but thanks to this project I have been able to understand how Encapsulation works and how to apply it in a program.  
+
+
 
 
 ## TIMELINE OF DEVELOPMENT ##
