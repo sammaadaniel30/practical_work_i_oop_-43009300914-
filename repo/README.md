@@ -151,6 +151,20 @@ As stated before, the insights I have learned is overall how to use the enums an
 
 Another thing I could say is that as I was advancing with the planning and the creation of the project we have also realized how and where to implement the principles of OOP (Polymorphism, Abstraction, Encapsulation and Inheritance), I only knew how to implement inheritance and polymorphism, but thanks to this project I have been able to understand how Encapsulation works and how to apply it in a program.  
 
+## 7. IMPORTANT NOTES 
+
+The program was named after this: 
+
+    The zip file must be named following the next naming convention: practical_work_i_oop_[id] (n is the student id).
+
+So the id which was used was the ID which was found in the University Portal. An image below is shown as evidence: 
+
+<div align="center">
+    <img src="../files/readme_files/ID_UNIVERSITY_PORTAL.png" alt="README.md image showing the class diagram of the program" width="95%">
+</div>
+
+The program should also take into consideration that a custom file with the train data must be loaded. For reference in the files folder of the project 2 example files can be found, one has a header and another does not. 
+
 
 
 
