@@ -19,6 +19,8 @@ This repository is the base element for the development of Practice 1 for the ex
  - [4.1 PROPOSED SOLUTION](#41-proposed-solution)
  - [4.2 CLASS DIAGRAM](#42-class-diagram)
  - [4.3 DEVELIPMENT CONSIDERATIONS](#43-development-considerations)
+- [5. PROBLEMS & CHALLENGES](#5-problems--challenges)
+
 
 
 
@@ -106,7 +108,17 @@ int capacity -> The amount of capacity a certain passenger train has.
 
 ## 5. PROBLEMS & CHALLENGES
 
+The creation of the repo was not a problem, however it was difficult on how to get it right. To start off an example of a base program was already given to us and was obligatory to use, so I did everything I could, including downloading, to put it into my git folder in my computer and try to upload and create a new repository in github, but that didn't work. I looked online for a solution and it was rather simple, I only had to use the "fork" function in GitHub, which sort of "copies" the existing repository from another user into a repository in my GitHub account and creates a new repository. This was simple to solve and it is a very useful function that I don't see why I would not use it in the future. 
 
+Given that I had already had a previous activity of handling a Landing Simulation, the code to do was somewhat similar however instead of using an Array for the platfroms, like I used last time I had to do a list this time, so I had to find a way to create a list of platforms, however it was a simple issue to solve as I just did a loop, in which each iteration was a new instance of a new platfrom which was created. 
+
+Something which I did not do last time was using the encapsulation practises to make sure the attributes of each class had the appropiate security level, the problem came when I did the code and it was mostly working but then I realised that all of my attributes where public and I needed to increment the privacy of each access modifier. Of course that meant changing parts, adding getters and setters in the subclasses and the base class. I thought it was going to be more difficult that I imagined but I referred to the slides of the subject to see how getter and setter methods work and I managed to solve this challenge. 
+
+There is another issue that I found, when all of the trains were docked the program must finish however, the problem is that how I designed the program to work was an endless loop which made the program continue even though all trains were docked, to fix this I implemented a bool which told the method which then class the loop to be set to false, and then when true it would not execute the loop (Advance Tick method) and since no other instruction is added in that method the program would finish. 
+
+Finally, a problem that I thinked of was, even if a file is found and the data format is correct, there is a chance that a file may have a header or not, this was a problem since if a file was loaded and the program was initially designed to skip the header or not, data from trains will not be loaded correctly. To solve this I though of doing 2 StreamReaders, the first one would read the first line, no matching criteria for a header was found a bool was sent as false and the StreamReader would close the file, on the other hand if criteria for a header was found in the first line the same bool was set to true and then the file would be closed. On to the second StreamReader, if the bool was set to true, the first line(header) would be skipped, if bool was false the first line would not be skipped(as it would be train data). 
+
+## 6. CONCLUSIONS
 
 ## TIMELINE OF DEVELOPMENT ##
 
@@ -162,7 +174,7 @@ Removed uneccessary code in the Platform class.
 
 Added a method to check when all the trains are docked and end the program. 
 
-Fixed minimal erros in the program class. 
+Fixed minimal errors in the program class. 
 
 Added setters and getters as well as changed the atributes of each class(not applied to Program) to the maximum access modifier possible to enhance encapsulation. (Protected for attributes in Train Class, rest are private). 
 
