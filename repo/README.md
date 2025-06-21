@@ -165,7 +165,7 @@ So the id which was used was the ID which was found in the University Portal. An
 
 The program should also take into consideration that a custom file with the train data must be loaded. For reference in the files folder of the project 2 example files can be found, one has a header and another does not. 
 
-
+[SEE EXAMPLE FILES](../files/example_files/)
 
 
 ## TIMELINE OF DEVELOPMENT ##
