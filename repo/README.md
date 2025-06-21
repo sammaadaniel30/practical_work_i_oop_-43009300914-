@@ -1,5 +1,6 @@
 # oop_pw1_ext_2425
 
+This repository is the base element for the development of Practice 1 for the extraordinary OOP exam session. 
 
 ## 1. COVER 
 
@@ -11,9 +12,27 @@
 
 - [1. COVER](#1-cover)
 - [2. TABLE OF CONTENTS](#2-table-of-contents)
+- [3. INTRODUCTION](#3-introduction)
+ - [3.1 NAMES OF THE GROUP MEMBERS](#31-names-of-the-group-members)
+ - [3.2 SUMMARY OF THE DOCUMENT](#32-summary-of-the-document)
+- [4. DESCRIPTION](#4-description)
 
 
-This repository is the base element for the development of Practice 1 for the extraordinary OOP exam session. 
+
+## 3. INTRODUCTION 
+
+### 3.1 NAMES OF THE GROUP MEMBERS
+
+    Daniel Sama Clemente
+
+### 3.2 SUMMARY OF THE DOCUMENT
+
+This document shows all of the inform regarding on how OOP principles have been used to, create a program resembling a Train Station Simulation of trains arriving and docking. This program was built for the Practical Work 1 (Extraordinary) of the OOP (Object-Oriented Programming) subject. As stated before, the program simultes the management of arriving trains into a train station and docking them. 
+
+## 4. DESCRIPTION
+
+
+
 
 ## TIMELINE OF DEVELOPMENT ##
 
