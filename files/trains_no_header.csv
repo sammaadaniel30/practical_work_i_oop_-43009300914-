@@ -1,0 +1,17 @@
+P001,15,Passenger,5,200
+M002,30,Freight,15000,Containers
+P100,45,Passenger,7,301
+M101,60,Freight,24077,Grain
+M102,75,Freight,19801,Vehicles
+P103,90,Passenger,9,477
+M104,105,Freight,18963,Coal
+M105,120,Freight,27468,Coal
+P106,135,Passenger,8,352
+P107,150,Passenger,7,322
+P108,165,Passenger,9,495
+M109,180,Freight,19816,Containers
+P110,195,Passenger,8,480
+M111,210,Freight,22125,Vehicles
+P112,225,Passenger,6,258
+P113,240,Passenger,5,260
+M114,255,Freight,18531,Grain
