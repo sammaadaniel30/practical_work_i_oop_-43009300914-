@@ -1,4 +1,18 @@
 # oop_pw1_ext_2425
+
+
+## 1. COVER 
+
+<div align="center">
+    <img src="../files/readme_files/COVER.png" alt="README.md cover for the project" width="95%">
+</div>
+
+## 2. TABLE OF CONTENTS 
+
+- [1. COVER](#1-cover)
+- [2. TABLE OF CONTENTS](#2-table-of-contents)
+
+
 This repository is the base element for the development of Practice 1 for the extraordinary OOP exam session. 
 
 ## TIMELINE OF DEVELOPMENT ##
