@@ -24,6 +24,8 @@ This repository is the base element for the development of Practice 1 for the ex
  - [6.1 LESSONS LEARNED](#61-lessons-learned)
  - [6.2 EFFECTIVENESS](#62-effectiveness)
  - [6.3 INSIGHTS LEARNED](#63-insights-gained)
+- [7. IMPORTANT NOTES](#7-important-notes)
+- [8. TIMELINE OF DEVELOPMENT](#8-timeline-of-development)
 
 
 
@@ -168,7 +170,7 @@ The program should also take into consideration that a custom file with the trai
 [SEE EXAMPLE FILES](../files/example_files/)
 
 
-## TIMELINE OF DEVELOPMENT ##
+## 8. TIMELINE OF DEVELOPMENT ##
 
 ### 12/06/2025 ###
 
