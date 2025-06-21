@@ -236,8 +236,18 @@ Added comments on all classes.
 
 Made a change in the LoadTrainFromFile method in the Station class, to automatically load the trains from a file regardless if it has a header or not, without losing data of trains. 
 
+### 20/06/2025 ###
+
 Added the cover image to put on the README file. 
 
 Made some changes into the behaviour of the program. 
 
 Added the class Diagram Image. 
+
+### 21/06/2025 ###
+
+Added an image which shows the ID from the University. 
+
+Added all of the README.md sections for the documentation. 
+
+Added example files which show how the correct file format to load trains into the program. 
