@@ -17,7 +17,7 @@ namespace OOP
         private List<Train> trains { get; set; }
 
         private int minutesPerTick = 15; // Each tick represents 15 minutes
-        
+
         private bool allTrainsDocked = false; // Controls when all trains have been docked 
 
         public Station(int numberOfPlatforms)
@@ -51,9 +51,9 @@ namespace OOP
             Console.WriteLine("|+++++++++++++++++++++++++++++++++|");
             Console.WriteLine("|---------------------------------|");
 
-            
 
-           
+
+
 
             SelectOption(); // Calls the Select Option method 
 
@@ -89,7 +89,7 @@ namespace OOP
                 else if (selection == 3)
                 {
                     // The program will finish
-                    Console.WriteLine("You have selected to exit the program."); 
+                    Console.WriteLine("You have selected to exit the program.");
                     Console.WriteLine("The program has exited successfully.");
                 }
                 // If the users enters a non-existent option 
@@ -130,7 +130,7 @@ namespace OOP
                 // The user must enter the file path, and also shows the warning on how the program works
                 Console.WriteLine("WARNING!: The program treats the file has a header.");
                 Console.WriteLine("If your program does not have a header please add a blank line at the top of the file.");
-                Console.WriteLine("Otherwise some trains may be not loaded");  
+                Console.WriteLine("Otherwise some trains may be not loaded");
                 Console.WriteLine("Please enter the path of the file you wish to load: ");
                 string path = Console.ReadLine();
 
@@ -153,7 +153,7 @@ namespace OOP
 
                 }
 
-              
+
 
                 // Instantation of a StreamReader to read the data from the file 
                 using (StreamReader sr = new StreamReader(path))
@@ -164,7 +164,7 @@ namespace OOP
                         sr.ReadLine(); // Skips the header (first line)
                     }
 
-                    string line; 
+                    string line;
 
                     // Reads the file per file until it is blank
                     while ((line = sr.ReadLine()) != null)
@@ -225,7 +225,7 @@ namespace OOP
             {
                 Console.WriteLine($"An error has been detected: {ex5.Message}");
                 Console.WriteLine("The inputted path can't be blank. Please try again");
-                LoadTrainsFromFile(); 
+                LoadTrainsFromFile();
             }
 
 
@@ -332,8 +332,19 @@ namespace OOP
                 if (!assigned) // If the train has not been assigned to a platform
                 {
                     assigned = platform.RequestPlatform(train); // We request a platform for the train
-
                 }
+            }
+
+            // If a train is still waiting to be assigned 
+            if (!assigned && train.GetTrainStatus() == Train.TrainStatus.Waiting)
+            {
+                Console.WriteLine($"No platforms available. Train: {train.GetID()} is still waiting.");
+            }
+            // If train has attempted to request a platfrom for the first time
+            if (!assigned && train.GetTrainStatus() == Train.TrainStatus.EnRoute)
+            {
+                train.SetTrainStatus(Train.TrainStatus.Waiting);
+                Console.WriteLine($"No platforms available. Train: {train.GetID()} is now waiting.");
             }
         }
 
