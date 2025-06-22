@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace OOP
 {
@@ -9,6 +10,7 @@ namespace OOP
         private PlatformStatus platformStatus { get; set; }
         private Train currentTrain { get; set; }
         private int dockingTime { get; set; }
+
         private enum PlatformStatus
         {
             Free,
@@ -64,20 +66,13 @@ namespace OOP
             {
                 platformStatus = PlatformStatus.Occupied; // The platform is being used by a train
                 currentTrain = train; // We assign a train to a specific platform
-                dockingTime = 2; // We reset the ticks remaining to dock
+                dockingTime = 3; // We reset the ticks remaining to dock
                 Console.WriteLine($"Train: {currentTrain.GetID()} is docking on {id}");
                 train.SetTrainStatus(Train.TrainStatus.Docking); // We change the status of the train to docking
                 return true;
             }
-            // If platforms are occupied
-            if (platformStatus == PlatformStatus.Occupied)
-            {
-                Console.WriteLine($"No platforms are available. Train {train.GetID()} is now waiting");
-                train.SetTrainStatus(Train.TrainStatus.Waiting); // We change the status of the train to waiting
-                return false;
-            }
 
-            // If anything is nothing from above then return false as we don't assign anything
+            // If platform is not free then 
             return false;
         }
 
@@ -98,7 +93,4 @@ namespace OOP
             }
         }
     }
-
-
-
 }
