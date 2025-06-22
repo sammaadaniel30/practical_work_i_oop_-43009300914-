@@ -251,3 +251,7 @@ Added an image which shows the ID from the University.
 Added all of the README.md sections for the documentation. 
 
 Added example files which show how the correct file format to load trains into the program. 
+
+### 22/06/2025 ###
+
+Fixed some typos in the README.md file and on comments along various classes. 
