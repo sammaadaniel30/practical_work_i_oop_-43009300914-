@@ -259,3 +259,9 @@ Added example files which show how the correct file format to load trains into t
 ### 22/06/2025 ###
 
 Fixed some typos in the README.md file and on comments along various classes. 
+
+Changed behaviour of platform management.
+
+Fix an issue where train repeated themselves printing in the screen when waiting. Now new if statements to show when trains are waiting 1 time per tick. 
+
+Added comments. 
