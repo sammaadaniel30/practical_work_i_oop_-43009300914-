@@ -73,7 +73,7 @@ namespace OOP
                 // If the user wishes to load the trains from a file 
                 if (selection == 1)
                 {
-                    // Attemps to load the trains from a specific file 
+                    // Attempts to load the trains from a specific file 
                     Console.WriteLine("You have selected to load the trains from files option");
                     // Calls the method which loads the files 
                     LoadTrainsFromFile();
@@ -90,7 +90,7 @@ namespace OOP
                 {
                     // The program will finish
                     Console.WriteLine("You have selected to exit the program."); 
-                    Console.WriteLine("The program has exitted successfully.");
+                    Console.WriteLine("The program has exited successfully.");
                 }
                 // If the users enters a non-existent option 
                 else

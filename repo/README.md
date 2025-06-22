@@ -39,7 +39,7 @@ This repository is the base element for the development of Practice 1 for the ex
 
 ### 3.2 SUMMARY OF THE DOCUMENT
 
-This document shows all of the inform regarding on how OOP principles have been used to, create a program resembling a Train Station Simulation of trains arriving and docking. This program was built for the Practical Work 1 (Extraordinary) of the OOP (Object-Oriented Programming) subject. As stated before, the program simultes the management of arriving trains into a train station and docking them. 
+This document shows all of the inform regarding on how OOP principles have been used to, create a program resembling a Train Station Simulation of trains arriving and docking. This program was built for the Practical Work 1 (Extraordinary) of the OOP (Object-Oriented Programming) subject. As stated before, the program simulates the management of arriving trains into a train station and docking them. 
 
 ## 4. DESCRIPTION
 
@@ -49,20 +49,20 @@ The program has been developed into 6 classes (including the Program class), in 
 
 **PROGRAM**: This is the entry point of the program, in where the user is given the welcome message and where the user is also asked about how many platforms he wishes the platform to have. After this the station is instantiated with the specific amount of platforms the user has asked. Then the program is taken to the to a method in the Station class which displays a menu for the user. 
 
-**STATION**: This is probably the most importnt class in the whole program, as it creates the list of Trains and Platforms. Tells the user which options to select, controls the inputs, loads the trains' data from a specific file; adds those trains list making sure data has been entered appropiately, making sure no ID is reapeted and also checking that at least the data of 15 trains is found, otherwise the trains are not loaded to the program. Futhermore, for each tick in the simulation, each train's arrival time is reduced by 15 minutes, shows the status of the trains and the platforms, and when a train is waiting it sends a request to the Platfrom class to start the docking of a train. The attributes used in this class are as follows: 
+**STATION**: This is probably the most importnt class in the whole program, as it creates the list of Trains and Platforms. Tells the user which options to select, controls the inputs, loads the trains' data from a specific file; adds those trains list making sure data has been entered appropiately, making sure no ID is reapeted and also checking that at least the data of 15 trains is found, otherwise the trains are not loaded to the program. Futhermore, during each tick in the simulation, each train's arrival time is reduced by 15 minutes, shows the status of the trains and the platforms, and when a train is waiting it sends a request to the Platform class to start the docking of a train. The attributes used in this class are as follows: 
 
-Train: List<Platform> platforms -> Creates the list of platfroms (number of them is given by the user).
+Train: List<Platform> platforms -> Creates the list of platforms (number of them is given by the user).
 Platform: List<Train> trains -> Creates the list of the trains (loaded from a specific file given by the user).
 
-Compositions was used for both lists, in the context of platfroms, a platform can't exist if there is no station, the same can be argued vice-versa. It can also be argued that the station has no point in existing if there are no trains which use it. 
+Composition was used for both lists, in the context of platforms, a platform can't exist if there is no station, the same can be argued vice-versa. It can also be argued that the station has no point in existing if there are no trains which use it. 
 
-Other attributes are: 
+Other attributes include: 
 
 int minutesPerTick = 15 -> Makes sure that each of the ticks represents 15 minutes. 
         
 bool allTrainsDocked = false -> Controls when all trains have been docked to automatically stop the simulation.
 
-**PLATFORM**: Ths class managed everything related to the platform, like assigning a train to a platfrom when the platform is free, calculating the ticks the train needs to fully dock, and well as changing the proper state of the platform when its freed or occupied. This class essentially takes and checks the request, from the Station class, to assign a train to a platform, if it is possible and communicates it back to the Station class. The attributes in this class are as follows: 
+**PLATFORM**: Ths class managed everything related to the platform, like assigning a train to a platform when the platform is free, calculating the ticks the train needs to fully dock, and well as changing the proper state of the platform when its freed or occupied. This class essentially takes and checks the request, from the Station class, to assign a train to a platform, if it is possible and communicates it back to the Station class. The attributes in this class are as follows: 
 
 string id -> Defines the id of each platform.
 
@@ -116,7 +116,7 @@ int capacity -> The amount of capacity a certain passenger train has.
 
 The creation of the repo was not a problem, however it was difficult on how to get it right. To start off an example of a base program was already given to us and was obligatory to use, so I did everything I could, including downloading, to put it into my git folder in my computer and try to upload and create a new repository in github, but that didn't work. I looked online for a solution and it was rather simple, I only had to use the "fork" function in GitHub, which sort of "copies" the existing repository from another user into a repository in my GitHub account and creates a new repository. This was simple to solve and it is a very useful function that I don't see why I would not use it in the future. 
 
-Given that I had already had a previous activity of handling a Landing Simulation, the code to do was somewhat similar however instead of using an Array for the platfroms, like I used last time I had to do a list this time, so I had to find a way to create a list of platforms, however it was a simple issue to solve as I just did a loop, in which each iteration was a new instance of a new platfrom which was created. 
+Given that I had already had a previous activity of handling a Landing Simulation, the code to do was somewhat similar however instead of using an Array for the platforms, like I used last time I had to do a list this time, so I had to find a way to create a list of platforms, however it was a simple issue to solve as I just did a loop, in which each iteration was a new instance of a new platform which was created. 
 
 Something which I did not do last time was using the encapsulation practises to make sure the attributes of each class had the appropiate security level, the problem came when I did the code and it was mostly working but then I realised that all of my attributes where public and I needed to increment the privacy of each access modifier. Of course that meant changing parts, adding getters and setters in the subclasses and the base class. I thought it was going to be more difficult that I imagined but I referred to the slides of the subject to see how getter and setter methods work and I managed to solve this challenge. 
 
@@ -134,18 +134,18 @@ Another thing which I have learned is how efficient also the List tool, it is li
 
 Both of them when being developed, as starting the program from scratch may take some time and may be a bit tideous, but from the point of view of developing a program they are very efficient. 
 
-Finally, another thing that I have learned is the power, efectiveness and efficienty of using the encapsulation principles, like being able to make attributes private and only being passed when the program specificaly asks for them using setter and getter methods. 
+Finally, another thing that I have learned is the power, effectiveness and efficiency of using the encapsulation principles, like being able to make attributes private and only being passed when the program specificaly asks for them using setter and getter methods. 
 
 ### 6.2 EFFECTIVENESS 
 
-I can say that this program now complies with the given requierements for the Practical Work 1 (Extraordinary). Where it correcly simulates the arrival of trains using the principles of OOP. 
+I can say that this program now complies with the given requierements for the Practical Work 1 (Extraordinary). Where it correctly simulates the arrival of trains using the principles of OOP. 
 
 Even though not mentioned in the Practical Work 1 statement, I have made sure to add more behaviours to avoid potential accidental erros and have a more realistic process. Some of the new behaviours include. 
 
  - No same trains will have the same ID 
- - When a train has reached the station the arrival time, even though the program after substraction could make it negative, it is set to 0, to avoid understading errors and keeping the simulation as close as possible to a real scenario. 
+ - When a train has reached the station the arrival time, even though the program after substraction could make it negative, it is set to 0, to avoid understanding errors and keeping the simulation as close as possible to a real scenario. 
  - When a train is in a Waiting state, if no Platforms are available the train will continue to be in a Waiting state. 
- - Also catch exceptions have been done to prenvent errors. 
+ - Also catch exceptions have been done to prevent errors. 
 
 ### 6.3 INSIGHTS GAINED
 
@@ -176,15 +176,15 @@ The program should also take into consideration that a custom file with the trai
 
 Forked the repo from the base repo. 
 
-Made the correspoding folder as stated. 
+Made the corresponding folder as stated. 
 
-Added the correct files in their correspoding folder. 
+Added the correct files in their corresponding folder. 
 
 ### 13/06/2025 ### 
 
-Created the files neccessary for each class. 
+Created the files necessary for each class. 
 
-Added constructors and also their properties neccessary.
+Added constructors and also their properties necessary.
 
 Added the syntax in the Program and Station class to print the menu. 
 
@@ -200,7 +200,7 @@ Added in the constructor a ConsoleWriteLine to show the creation of each Platfor
 
 Corrected errors in the file loading. 
 
-Added the virtual methods for printing the details of the platfroms and trains. 
+Added the virtual methods for printing the details of the platforms and trains. 
 
 Added partially the DisplayStatus method to show through the console the trains loaded from the file. ÇÇ
 
@@ -220,7 +220,7 @@ Added clarity for the code reading in the console in the Program class.
 
 Added a new method to manage the request of platforms, for arriving train and setting them to waiting or allowing them to process the request. 
 
-Removed uneccessary code in the Platform class. 
+Removed unnecessary code in the Platform class. 
 
 Added a method to check when all the trains are docked and end the program. 
 
@@ -228,7 +228,7 @@ Fixed minimal errors in the program class.
 
 Added setters and getters as well as changed the atributes of each class(not applied to Program) to the maximum access modifier possible to enhance encapsulation. (Protected for attributes in Train Class, rest are private). 
 
-Added exceptions to the Station and Platfrom class. 
+Added exceptions to the Station and Platform class. 
 
 Fixed some typos in the Program Class. 
 

@@ -20,7 +20,7 @@ namespace OOP
             this.id = id;
             platformStatus = PlatformStatus.Free; // By default all platforms are free when instantiated 
             this.currentTrain = null;
-            this.dockingTime = 3; // Time for docking requiered, it is 3 given that the first iteration already takes away a tick
+            this.dockingTime = 3; // Time for docking required, it is 3 given that the first iteration already takes away a tick
         }
 
         // Shows to the user the amount of platforms created and their names
@@ -42,7 +42,7 @@ namespace OOP
                 // If the docking time is bigger than 0
                 if (dockingTime >= 2)
                 {
-                    return $"{id} is ocupied by Train: {currentTrain.GetID()}, with {dockingTime} ticks remaining to dock.";
+                    return $"{id} is occupied by Train: {currentTrain.GetID()}, with {dockingTime} ticks remaining to dock.";
                 }
                 else if (dockingTime == 1)
                 {
@@ -51,12 +51,12 @@ namespace OOP
                 // Otherwise
                 else
                 {
-                    return $"{id} is ocupied by Train {currentTrain.GetID()}.";
+                    return $"{id} is occupied by Train {currentTrain.GetID()}.";
                 }
             }
         }
 
-        // Train is requesting a platfrom to start the process of docking 
+        // Train is requesting a platform to start the process of docking 
         public bool RequestPlatform(Train train)
         {
             // If a platform is free 
@@ -64,7 +64,7 @@ namespace OOP
             {
                 platformStatus = PlatformStatus.Occupied; // The platform is being used by a train
                 currentTrain = train; // We assign a train to a specific platform
-                dockingTime = 2; // We reset the ticks remaning to dock
+                dockingTime = 2; // We reset the ticks remaining to dock
                 Console.WriteLine($"Train: {currentTrain.GetID()} is docking on {id}");
                 train.SetTrainStatus(Train.TrainStatus.Docking); // We change the status of the train to docking
                 return true;
@@ -85,7 +85,7 @@ namespace OOP
         {
             if (platformStatus == PlatformStatus.Occupied && currentTrain != null)
             {
-                dockingTime--; // We substract a tick 
+                dockingTime--; // We subtract a tick 
 
                 if (dockingTime <= 0)
                 {
