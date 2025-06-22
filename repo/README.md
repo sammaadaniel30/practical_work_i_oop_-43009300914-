@@ -70,7 +70,7 @@ enum PlatformStatus platformStatus -> Defines the state of the platform in each 
 
 Train currentTrain -> Property, which assigns a train to a specific platform.
 
-int dockingTime -> The amount of ticks neccesary for the docking process to finish.
+int dockingTime -> The amount of ticks neccesary for the docking process to finish. See [# IMPORTANT NOTES](#7-important-notes) to see why this variable is set to 3 instead of 2. 
 
 **TRAIN**: This is an abstract class, it used the principle of abstraction as each of the trains loaded will have to be one of the subclasses (Freight or Passenger), in other words each train will only belong to a specific subclass, thus no general Train is created. This class also uses the principle of inheritance as it is the superclass of each train created. Furthermore this class uses polymorphism principles as there is a virtual method which prints the generic characteristics of each train and then overrides methods in the subclasses, it prints the base method and then the override method. The attributes in this class are as follows: 
 
@@ -162,12 +162,16 @@ The program was named after this:
 So the id which was used was the ID which was found in the University Portal. An image below is shown as evidence: 
 
 <div align="center">
-    <img src="../files/readme_files/ID_UNIVERSITY_PORTAL.png" alt="README.md image showing the class diagram of the program" width="95%">
+    <img src="../files/readme_files/ID_UNIVERSITY_PORTAL.png" alt="README.md image showing the ID of the student in the University Portal" width="95%">
 </div>
 
 The program should also take into consideration that a custom file with the train data must be loaded. For reference in the files folder of the project 2 example files can be found, one has a header and another does not. 
 
 [SEE EXAMPLE FILES](../files/example_files/)
+
+**DOCKING TIME VARIABLE VALUE EXPLAINED**
+
+The statement of the exercise says that the ticks needed to dock are 2, however in the platform class you can see that the variable which defines those ticks is 3. This is because even though the variable should be 2, it is 3 as the advance tick method which tries to assign a train to an empty platform already substracts a tick in the same operation, meaning that if the variable was defined with 2 the DisplayStatus would print the train with 1 tick to dock and the next tick would be just the docking, meaning only 1 tick was done when it should have been two. With a 3 it ensures that 2 ticks are performed and the same program can be reused for every tick which advances in a correct way. 
 
 
 ## 8. TIMELINE OF DEVELOPMENT ##
