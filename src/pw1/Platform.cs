@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 
 namespace OOP
 {
@@ -28,7 +29,7 @@ namespace OOP
         // Shows to the user the amount of platforms created and their names
         public void ShowCreatedPlatforms(int i)
         {
-            Console.WriteLine($"Created {id}");
+            Console.WriteLine($"Created {id}");  // Shows the platforms created 
         }
 
         public string GetStatus()
@@ -36,16 +37,17 @@ namespace OOP
             // If a platform is free 
             if (platformStatus == PlatformStatus.Free)
             {
-                return $"{id} IS FREE";
+                return $"{id} IS FREE"; // Shows the platform is free 
             }
             // If a platform is not free 
             else
             {
-                // If the docking time is bigger than 0
-                if (dockingTime >= 2)
+                // If the docking time is equal to 2
+                if (dockingTime == 2)
                 {
                     return $"{id} is occupied by Train: {currentTrain.GetID()}, with {dockingTime} ticks remaining to dock.";
                 }
+                // If the docking time is 1 
                 else if (dockingTime == 1)
                 {
                     return $"{id} is occupied by Train: {currentTrain.GetID()}, with {dockingTime} tick remaining to dock ";
@@ -84,9 +86,10 @@ namespace OOP
 
                 if (dockingTime <= 0)
                 {
-                    dockingTime = 0;
+                    dockingTime = 0; // To avoid negative values 
                     currentTrain.SetTrainStatus(Train.TrainStatus.Docked); // We change the status of the train to docked
-                    platformStatus = PlatformStatus.Free; // We free the platform 
+                    platformStatus = PlatformStatus.Free; // We free the platform
+                    // Shows the user that a train has docked, and has left the platform free 
                     Console.WriteLine($"Train {currentTrain.GetID()} with {dockingTime} ticks remaining, has docked, leaving {id} free");
                     Console.WriteLine(" "); // Black space for clarity 
                 }

@@ -140,7 +140,7 @@ namespace OOP
                 // Checks if there is a header
                 using (StreamReader checkHeader = new StreamReader(path))
                 {
-                    string firstLine = checkHeader.ReadLine();
+                    string firstLine = checkHeader.ReadLine(); // Reads first line
 
                     string[] fields = firstLine.Split(separator); // Splits the first line into fields 
 
@@ -184,18 +184,22 @@ namespace OOP
                         int arrivalTime = Int32.Parse(fields[1]);
                         string type = fields[2];
 
+                        // If the type is passenger
                         if (type == "Passenger")
                         {
                             int numberOfCarriages = int.Parse(fields[3]);
                             int capacity = Int32.Parse(fields[4]);
+                            // Add passenger train in the list 
                             trains.Add(new PassengerTrain(id, arrivalTime, type, numberOfCarriages, capacity));
 
 
                         }
+                        // If the type freight
                         else if (type == "Freight")
                         {
                             int maxWeight = int.Parse(fields[3]);
                             string freightType = fields[4];
+                            // Add freight train in the list 
                             trains.Add(new FreightTrain(id, arrivalTime, type, maxWeight, freightType));
                         }
                     }
@@ -219,13 +223,13 @@ namespace OOP
             {
                 Console.WriteLine($"An error has been detected: {ex4.Message}");
                 Console.WriteLine("Please introduce the path of a file which exists");
-                LoadTrainsFromFile();
+                LoadTrainsFromFile(); // Goes back
             }
             catch (ArgumentNullException ex5)
             {
                 Console.WriteLine($"An error has been detected: {ex5.Message}");
                 Console.WriteLine("The inputted path can't be blank. Please try again");
-                LoadTrainsFromFile();
+                LoadTrainsFromFile(); // Goes back 
             }
 
 
@@ -239,7 +243,8 @@ namespace OOP
                 // If the ID is repeated a message is shown
                 if (id == train.GetID())
                 {
-                    Console.WriteLine($"Train {id} already exists");
+                    // Tells the user that train already exists 
+                    Console.WriteLine($"Train {id} already exists.");
                     PrintMenu(); // User is returned to the menu. 
                 }
             }
@@ -249,18 +254,18 @@ namespace OOP
         public void DisplayStatus()
         {
             // Prints the status of the platforms 
-            Console.WriteLine("\n=============== PLATFORMS STATUS ================");
+            Console.WriteLine("\n============================================ PLATFORMS STATUS ================================================");
             foreach (var platform in platforms)
             {
                 Console.WriteLine(platform.GetStatus());
             }
             // Prints the status of all of the trains
-            Console.WriteLine("\n=============== TRAINS STATUS ===================");
+            Console.WriteLine("\n=============================================== TRAINS STATUS ================================================");
             foreach (var train in trains)
             {
                 train.ShowTrainInfo();
             }
-            Console.WriteLine("=================================================\n");
+            Console.WriteLine("================================================================================================================\n");
         }
 
         public void AdvanceTick()
@@ -343,7 +348,7 @@ namespace OOP
             // If train has attempted to request a platfrom for the first time
             if (!assigned && train.GetTrainStatus() == Train.TrainStatus.EnRoute)
             {
-                train.SetTrainStatus(Train.TrainStatus.Waiting);
+                train.SetTrainStatus(Train.TrainStatus.Waiting); // Sets the train status to waiting 
                 Console.WriteLine($"No platforms available. Train: {train.GetID()} is now waiting.");
             }
         }
@@ -356,7 +361,7 @@ namespace OOP
                 // Counts the number of trains already docked 
                 if (train.GetTrainStatus() == Train.TrainStatus.Docked)
                 {
-                    countDockedTrains++;
+                    countDockedTrains++; // Timer for each train that has been docked
                 }
             }
 
